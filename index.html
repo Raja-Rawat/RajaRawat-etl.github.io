@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Microsoft Windows 2000 Professional - Raja Rawat (Informatica Administrator)</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Desktop Workspace -->
+    <div id="desktop">
+        <!-- Desktop Icons Layer -->
+        <div id="desktop-icons"></div>
+
+        <!-- Desktop Selection Marquee Box -->
+        <div id="selection-box"></div>
+
+        <!-- Windows Manager Container -->
+        <div id="windows-container"></div>
+    </div>
+
+    <!-- Windows Taskbar -->
+    <div id="taskbar">
+        <!-- Start Button -->
+        <button id="start-button" class="win-button">
+            <span id="start-icon"></span>
+            <span>Start</span>
+        </button>
+
+        <div class="taskbar-divider"></div>
+
+        <!-- Running Application Tabs -->
+        <div id="taskbar-tasks"></div>
+
+        <div class="taskbar-divider"></div>
+
+        <!-- System Tray -->
+        <div id="system-tray">
+            <div id="tray-sound" class="tray-icon" title="Audio (Click to Mute/Unmute)"></div>
+            <div id="tray-screen" class="tray-icon" title="Display Properties"></div>
+            <div id="clock-display" title="Current Time">12:00 PM</div>
+        </div>
+    </div>
+
+    <!-- Windows 2000 Start Menu -->
+    <div id="start-menu">
+        <div class="start-sidebar-banner">
+            <div class="start-sidebar-text">Windows 2000 Professional</div>
+        </div>
+        <div class="start-items-column">
+            <!-- Programs -->
+            <div class="start-item" id="start-programs">
+                <div class="start-item-icon" id="start-ico-programs"></div>
+                <span><u>P</u>rograms</span>
+                <span class="start-item-arrow">&#9654;</span>
+                <!-- Programs Submenu -->
+                <div class="start-submenu">
+                    <div class="start-item" onclick="AppManager.openMyComputer()">
+                        <div class="start-item-icon" id="start-sub-mycomputer"></div>
+                        <span>My Computer</span>
+                    </div>
+                    <div class="start-item" onclick="AppManager.openResumeViewer()">
+                        <div class="start-item-icon" id="start-sub-doc-htmlresume"></div>
+                        <span>Printable Resume (A4)</span>
+                    </div>
+                    <div class="start-item" onclick="AppManager.openInternetExplorer()">
+                        <div class="start-item-icon" id="start-sub-ie"></div>
+                        <span>Internet Explorer</span>
+                    </div>
+                    <div class="start-item" onclick="AppManager.openNotepad()">
+                        <div class="start-item-icon" id="start-sub-notepad"></div>
+                        <span>Notepad</span>
+                    </div>
+                    <div class="start-item" onclick="AppManager.openCmd()">
+                        <div class="start-item-icon" id="start-sub-cmd"></div>
+                        <span>Command Prompt</span>
+                    </div>
+                    <div class="start-item" onclick="AppManager.openMinesweeper()">
+                        <div class="start-item-icon" id="start-sub-minesweeper"></div>
+                        <span>Minesweeper</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Documents -->
+            <div class="start-item" id="start-documents">
+                <div class="start-item-icon" id="start-ico-documents"></div>
+                <span><u>D</u>ocuments</span>
+                <span class="start-item-arrow">&#9654;</span>
+                <!-- Documents Submenu -->
+                <div class="start-submenu">
+                    <div class="start-item" onclick="AppManager.openResumeViewer()">
+                        <div class="start-item-icon" id="start-sub-doc-htmlresume2"></div>
+                        <span>Printable Resume.html</span>
+                    </div>
+                    <div class="start-item" onclick="const itm = DesktopManager.desktopItems.find(i => i.id === 'resume-txt'); AppManager.openNotepad('Resume.txt', itm ? itm.content : '')">
+                        <div class="start-item-icon" id="start-sub-doc-resume"></div>
+                        <span>Resume.txt</span>
+                    </div>
+                    <div class="start-item" onclick="const itm = DesktopManager.desktopItems.find(i => i.id === 'about-txt'); AppManager.openNotepad('About_Me.txt', itm ? itm.content : '')">
+                        <div class="start-item-icon" id="start-sub-doc-about"></div>
+                        <span>About_Me.txt</span>
+                    </div>
+                    <div class="start-item" onclick="const itm = DesktopManager.desktopItems.find(i => i.id === 'contact-txt'); AppManager.openNotepad('Contact Info.txt', itm ? itm.content : '')">
+                        <div class="start-item-icon" id="start-sub-doc-contact"></div>
+                        <span>Contact Info.txt</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Settings -->
+            <div class="start-item" id="start-settings">
+                <div class="start-item-icon" id="start-ico-settings"></div>
+                <span><u>S</u>ettings</span>
+                <span class="start-item-arrow">&#9654;</span>
+                <div class="start-submenu">
+                    <div class="start-item" onclick="AppManager.openProperties()">
+                        <div class="start-item-icon" id="start-sub-ctrlpanel"></div>
+                        <span>Control Panel</span>
+                    </div>
+                    <div class="start-item" onclick="AppManager.openProperties()">
+                        <div class="start-item-icon" id="start-sub-disp-props"></div>
+                        <span>Display Properties</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="start-separator"></div>
+
+            <!-- Help -->
+            <div class="start-item" onclick="AppManager.openHelp()">
+                <div class="start-item-icon" id="start-ico-help"></div>
+                <span><u>H</u>elp</span>
+            </div>
+
+            <!-- Run -->
+            <div class="start-item" onclick="DialogManager.showRun()">
+                <div class="start-item-icon" id="start-ico-run"></div>
+                <span><u>R</u>un...</span>
+            </div>
+
+            <div class="start-separator"></div>
+
+            <!-- Shut Down -->
+            <div class="start-item" onclick="DialogManager.showShutdown()">
+                <div class="start-item-icon" id="start-ico-shutdown"></div>
+                <span>Shut <u>D</u>own...</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Desktop Right-Click Context Menu -->
+    <div id="context-menu-desktop" class="context-menu">
+        <div class="context-menu-item" onclick="DesktopManager.refresh()">
+            <span><u>R</u>efresh</span>
+        </div>
+        <div class="context-menu-separator"></div>
+        <div class="context-menu-item">
+            <span>Arrange Icons</span>
+            <span class="context-menu-arrow">&#9654;</span>
+            <div class="context-submenu">
+                <div class="context-menu-item" onclick="DesktopManager.arrangeIcons('name')"><span>by <u>N</u>ame</span></div>
+                <div class="context-menu-item" onclick="DesktopManager.arrangeIcons('type')"><span>by <u>T</u>ype</span></div>
+            </div>
+        </div>
+        <div class="context-menu-separator"></div>
+        <div class="context-menu-item">
+            <span><u>N</u>ew</span>
+            <span class="context-menu-arrow">&#9654;</span>
+            <div class="context-submenu">
+                <div class="context-menu-item" onclick="DesktopManager.createNewFolder()">
+                    <span id="ctx-new-folder-ico"></span>
+                    <span><u>F</u>older</span>
+                </div>
+                <div class="context-menu-item" onclick="DesktopManager.createNewTextFile()">
+                    <span id="ctx-new-file-ico"></span>
+                    <span><u>T</u>ext Document</span>
+                </div>
+            </div>
+        </div>
+        <div class="context-menu-separator"></div>
+        <div class="context-menu-item" onclick="AppManager.openProperties()">
+            <span>P<u>r</u>operties</span>
+        </div>
+    </div>
+
+    <!-- Icon Right-Click Context Menu -->
+    <div id="context-menu-icon" class="context-menu">
+        <div class="context-menu-item" id="ctx-icon-open" onclick="DesktopManager.openContextItem()">
+            <span><strong><u>O</u>pen</strong></span>
+        </div>
+        <div class="context-menu-separator"></div>
+        <div class="context-menu-item" id="ctx-icon-rename" onclick="DesktopManager.renameContextItem()">
+            <span><u>R</u>ename</span>
+        </div>
+        <div class="context-menu-item" id="ctx-icon-delete" onclick="DesktopManager.deleteContextItem()">
+            <span><u>D</u>elete</span>
+        </div>
+        <div class="context-menu-separator"></div>
+        <div class="context-menu-item" onclick="DesktopManager.propertiesContextItem()">
+            <span>P<u>r</u>operties</span>
+        </div>
+    </div>
+
+    <!-- Run Dialog Modal -->
+    <div id="modal-run" class="modal-overlay">
+        <div class="modal-dialog" style="width: 360px;">
+            <div class="win-titlebar">
+                <div class="win-titlebar-left">
+                    <span class="win-titlebar-title">Run</span>
+                </div>
+                <div class="win-titlebar-controls">
+                    <button class="win-control-btn" onclick="DialogManager.hideRun()">&#10005;</button>
+                </div>
+            </div>
+            <div class="modal-body">
+                <div id="run-dialog-icon" style="width: 32px; height: 32px;"></div>
+                <div style="flex: 1; display: flex; flex-direction: column; gap: 8px;">
+                    <div>Type the name of a program, folder, document, or Internet resource, and Windows will open it for you.</div>
+                    <div style="display: flex; align-items: center; gap: 6px;">
+                        <label for="run-input"><u>O</u>pen:</label>
+                        <input type="text" id="run-input" class="retro-input" style="height: 22px;" placeholder="cmd, notepad, ie, winmine, portfolio..." autofocus>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-actions">
+                <button class="win-button" onclick="DialogManager.executeRun()">OK</button>
+                <button class="win-button" onclick="DialogManager.hideRun()">Cancel</button>
+                <button class="win-button" onclick="DialogManager.browseRun()">Browse...</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Shut Down Dialog Modal -->
+    <div id="modal-shutdown" class="modal-overlay">
+        <div class="modal-dialog" style="width: 340px;">
+            <div class="win-titlebar">
+                <div class="win-titlebar-left">
+                    <span class="win-titlebar-title">Shut Down Windows</span>
+                </div>
+                <div class="win-titlebar-controls">
+                    <button class="win-control-btn" onclick="DialogManager.hideShutdown()">&#10005;</button>
+                </div>
+            </div>
+            <div class="modal-body">
+                <div id="shutdown-dialog-icon" style="width: 32px; height: 32px;"></div>
+                <div style="flex: 1; display: flex; flex-direction: column; gap: 8px;">
+                    <div>What do you want the computer to do?</div>
+                    <select id="shutdown-action-select" class="retro-input" style="height: 24px;">
+                        <option value="shutdown">Shut down</option>
+                        <option value="restart">Restart</option>
+                        <option value="logoff">Log off Developer</option>
+                    </select>
+                    <div id="shutdown-action-desc" style="font-size: 11px; color: #404040;">
+                        Ends your session and shuts down Windows so that you can safely turn off computer power.
+                    </div>
+                </div>
+            </div>
+            <div class="modal-actions">
+                <button class="win-button" onclick="DialogManager.executeShutdown()">OK</button>
+                <button class="win-button" onclick="DialogManager.hideShutdown()">Cancel</button>
+                <button class="win-button" onclick="AppManager.openHelp()">Help</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Safe to Turn Off Computer Retro Screen -->
+    <div id="shutdown-screen">
+        <div>It is now safe to turn off your computer.</div>
+        <p>Click anywhere or press any key to restart Windows 2000.</p>
+    </div>
+
+    <!-- External & Core Script Modules -->
+    <script src="icons.js"></script>
+    <script src="audio.js"></script>
+    <script src="data.js"></script>
+    <script src="window-manager.js"></script>
+    <script src="explorer.js"></script>
+    <script src="apps.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>
